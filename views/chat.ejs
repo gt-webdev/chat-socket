@@ -5,6 +5,8 @@
     <script src='/socket.io/socket.io.js'></script>
     <script>
       var socket = io.connect('http://localhost');
+      var username = 'noob tomer';
+
       socket.on('test', function(data){
         console.log('connected to server');
       });
@@ -17,9 +19,23 @@
         console.log('sending message:', text);
         socket.emit('msg', {text:text});
       }
+
+      function set_username(){
+        document.getElementById('login').style.setProperty('display', 'none');
+        document.getElementById('chat').style.setProperty('display', 'block');
+        username = document.getElementById('username').value || 'noob tomer';
+      }
     </script>
   </head>
   <body>
-
+    <div id='login'>
+      <input id='username' placeholder='pick a name'>
+      <button onclick='set_username()'>enter</button>
+    </div>
+    <div id='chat' style='display:none'>
+      <input id='message_field'><button onclick='send_msg("I should send some text")'>send</button>
+      <div id='messages' style='height:600px;width:400px;overflow-y:scroll'>
+      </div>
+    </div>
   </body>
 </html>
