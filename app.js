@@ -14,8 +14,9 @@ var io = require('socket.io').listen(server);
 
 io.sockets.on('connection', function(socket){
   socket.emit('test', {tool:'color?'});
-  socket.on('response', function(data){
-    console.log(data);
+
+  socket.on('msg', function(data){
+    io.sockets.emit('msg', {text:data.text, time:new Date().getTime()});
   });
 });
 
