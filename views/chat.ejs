@@ -2,6 +2,18 @@
 <html>
   <head>
     <title>socket chat</title>
+    <style>
+      .user_text {
+        color:blue;
+        margin-right:1em;
+      }
+
+      .timestamp {
+        font-size:8pt;
+        color:green;
+        float:right;
+      }
+    </style>
     <script src='/socket.io/socket.io.js'></script>
     <script>
       var socket = io.connect('http://localhost');
@@ -29,7 +41,12 @@
         msg.appendChild(msg_timestamp);
         msg_div.appendChild(msg);
 
-        document.getElementById('messages').appendChild(msg_div)
+        var messages = document.getElementById('messages');
+        if (messages.children.length){
+          messages.insertBefore(msg_div, messages.children[0]);
+        } else {
+          messages.appendChild(msg_div);
+        }
       });
 
       function send_msg(){
