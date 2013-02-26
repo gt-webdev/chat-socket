@@ -1,0 +1,10 @@
+{
+  "name":"chat",
+  "version":"0.0.0",
+  "description":"real time chat using express and socket.io",
+  "dependencies":{
+    "express":"3.x",
+    "ejs":"*",
+    "socket.io":"*"
+  }
+}
