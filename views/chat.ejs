@@ -13,6 +13,23 @@
 
       socket.on('msg', function(data){
         console.log('received message:', data.text, new Date(data.time), "from:", data.user);
+        var msg_div = document.createElement('div');
+        var msg = document.createElement('p');
+        var msg_user = document.createElement('span');
+        var msg_timestamp = document.createElement('span');
+
+        msg_user.innerHTML = data.user;
+        msg_user.className = 'user_text';
+
+        msg_timestamp.innerHTML = new Date(data.time).toString();
+        msg_timestamp.className = 'timestamp';
+
+        msg.appendChild(msg_user);
+        msg.innerHTML += data.text;
+        msg.appendChild(msg_timestamp);
+        msg_div.appendChild(msg);
+
+        document.getElementById('messages').appendChild(msg_div)
       });
 
       function send_msg(){
