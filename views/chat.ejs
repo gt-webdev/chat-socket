@@ -12,12 +12,15 @@
       });
 
       socket.on('msg', function(data){
-        console.log('received message:', data.text, new Date(data.time));
+        console.log('received message:', data.text, new Date(data.time), "from:", data.user);
       });
 
-      function send_msg(text){
-        console.log('sending message:', text);
-        socket.emit('msg', {text:text});
+      function send_msg(){
+        var message_field = document.getElementById('message_field');
+        socket.emit('msg', {text:message_field.value, user:username});
+        console.log('sending message:', message_field.value);
+        message_field.value = "";
+        message_field.focus();
       }
 
       function set_username(){

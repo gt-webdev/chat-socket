@@ -16,7 +16,7 @@ io.sockets.on('connection', function(socket){
   socket.emit('test', {tool:'color?'});
 
   socket.on('msg', function(data){
-    io.sockets.emit('msg', {text:data.text, time:new Date().getTime()});
+    io.sockets.emit('msg', {text:data.text, time:new Date().getTime(), user:data.user});
   });
 });
 
